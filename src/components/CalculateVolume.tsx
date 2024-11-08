@@ -1,15 +1,8 @@
 "use client";
-import {
-    ethers,
-    Contract,
-    JsonRpcProvider,
-    EventLog,
-    Log,
-    Block,
-} from "ethers";
+import { ethers, Contract, JsonRpcProvider, EventLog, Log } from "ethers";
 import { useState, useEffect } from "react";
 import React from "react";
-import { ChartData, Chart as ChartJS } from "chart.js";
+import { ChartData } from "chart.js";
 import LineGraph from "./LineGraph";
 import BarChart from "./BarChart";
 import GasUsedPercent from "./GasUsedPercent";
@@ -29,7 +22,7 @@ export default function CalculateVolume() {
         "event Transfer(address indexed from, address indexed to, uint value)",
     ];
     const contractAddress = "0xdAC17F958D2ee523a2206206994597C13D831ec7";
-    let contract: Contract = new Contract(contractAddress, abi, provider);
+    const contract: Contract = new Contract(contractAddress, abi, provider);
 
     const getData = async () => {
         try {
@@ -52,9 +45,9 @@ export default function CalculateVolume() {
     };
 
     const calculateData = (events: (EventLog | Log)[]): ChartData<"line"> => {
-        let blockLabels: number[] = [];
-        let volumes: BigInt[] = [];
-        let currentBlockVolume: BigInt = BigInt(0);
+        const blockLabels: number[] = [];
+        const volumes: bigint[] = [];
+        let currentBlockVolume: bigint = BigInt(0);
         let previousBlockNumber = events[0]?.blockNumber;
 
         events.forEach((event) => {
@@ -110,7 +103,7 @@ export default function CalculateVolume() {
             gasUsedPercent.push(percentage);
         }
 
-        console.log("Gas used percent values: ", gasUsedPercent);
+        console.log("Gas used in percentage values: ", gasUsedPercent);
 
         setGasUsedPercentage({
             labels: labels,
@@ -122,8 +115,6 @@ export default function CalculateVolume() {
                 },
             ],
         });
-
-        console.log("Hook obj: ", gasUsedPercentage);
 
         setBaseFeeData({
             labels: labels,
@@ -150,7 +141,7 @@ export default function CalculateVolume() {
         return () => {
             provider.off("block");
         };
-    }, [, API_KEY]);
+    });
 
     return (
         <>

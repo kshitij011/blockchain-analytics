@@ -36,11 +36,7 @@ export default function GasUsedPercent({
         ];
     };
 }) {
-    console.log("gas used Percent data", gasUsedPercentage);
-
     const options = {};
-
-    // const data = gasUsedPercentage;
 
     return (
         <>

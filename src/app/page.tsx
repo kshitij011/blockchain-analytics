@@ -1,8 +1,5 @@
 "use client";
-import LineGraph from "@/components/LineGraph";
-import BarChart from "@/components/BarChart";
-import { ethers, Contract, JsonRpcProvider, EventLog, Log } from "ethers";
-import { useEffect } from "react";
+
 import CalculateVolume from "@/components/CalculateVolume";
 
 export default function Home() {
