@@ -9,6 +9,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    ChartData,
 } from "chart.js";
 
 // register the elements before using them
@@ -26,14 +27,7 @@ export default function LineGraph({
     data,
 }: {
     data: {
-        labels: [];
-        datasets: [
-            {
-                label: "Token Volume";
-                data: [];
-                borderColor: "rgb(75, 192, 192)";
-            }
-        ];
+        data: ChartData<"line", number[]>;
     };
 }) {
     const options = {};

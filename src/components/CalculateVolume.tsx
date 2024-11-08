@@ -8,11 +8,13 @@ import BarChart from "./BarChart";
 import GasUsedPercent from "./GasUsedPercent";
 
 export default function CalculateVolume() {
-    const [data, setData] = useState<ChartData | null>(null);
+    const [data, setData] = useState<ChartData<"line"> | null>(null);
     const [loading, setLoading] = useState(true);
-    const [baseFeeData, setBaseFeeData] = useState<ChartData | null>(null);
+    const [baseFeeData, setBaseFeeData] = useState<ChartData<"bar"> | null>(
+        null
+    );
     const [gasUsedPercentage, setGasUsedPercentage] =
-        useState<ChartData | null>(null);
+        useState<ChartData<"line"> | null>(null);
     const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
     const provider: JsonRpcProvider = new JsonRpcProvider(
@@ -51,7 +53,7 @@ export default function CalculateVolume() {
         let previousBlockNumber = events[0]?.blockNumber;
 
         events.forEach((event) => {
-            const { blockNumber, args } = event;
+            const { blockNumber, args } = event as EventLog;
             if (blockNumber === previousBlockNumber) {
                 currentBlockVolume += args.value;
             } else {
@@ -141,7 +143,7 @@ export default function CalculateVolume() {
         return () => {
             provider.off("block");
         };
-    });
+    }, []);
 
     return (
         <>
