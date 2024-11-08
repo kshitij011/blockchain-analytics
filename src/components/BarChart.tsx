@@ -8,6 +8,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    ChartData,
 } from "chart.js";
 
 // register the elements before using them
@@ -25,18 +26,7 @@ import React from "react";
 export default function BarChart({
     baseFeeData,
 }: {
-    baseFeeData: {
-        labels: [];
-        datasets: [
-            {
-                label: "Token Volume";
-                data: [];
-                backgroundColor: "rgba(225, 99, 132, 0.2)";
-                borderColor: "rgb(75, 192, 192)";
-                borderWidth: 1;
-            }
-        ];
-    };
+    baseFeeData: ChartData<"bar">;
 }) {
     const options = {};
 

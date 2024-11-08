@@ -24,11 +24,9 @@ ChartJS.register(
 );
 
 export default function LineGraph({
-    data,
+    lineData,
 }: {
-    data: {
-        data: ChartData<"line", number[]>;
-    };
+    lineData: ChartData<"line">;
 }) {
     const options = {};
 
@@ -47,7 +45,7 @@ export default function LineGraph({
                 <div className="h-96">
                     <Line
                         options={options}
-                        data={data}
+                        data={lineData}
                         className="m-5 h-96 bg-slate-800 rounded-2xl"
                     />
                 </div>

@@ -8,7 +8,7 @@ import BarChart from "./BarChart";
 import GasUsedPercent from "./GasUsedPercent";
 
 export default function CalculateVolume() {
-    const [data, setData] = useState<ChartData<"line"> | null>(null);
+    const [lineData, setData] = useState<ChartData<"line"> | null>(null);
     const [loading, setLoading] = useState(true);
     const [baseFeeData, setBaseFeeData] = useState<ChartData<"bar"> | null>(
         null
@@ -36,7 +36,7 @@ export default function CalculateVolume() {
 
             console.log("Transfer Events: ", transferEvents);
 
-            const chartData = calculateData(transferEvents);
+            const chartData: ChartData<"line"> = calculateData(transferEvents);
             setData(chartData); // Use setData only after data is calculated
 
             await getBlockData();
@@ -151,7 +151,7 @@ export default function CalculateVolume() {
                 <h1 className="my-5 font-extrabold">Loading charts...</h1>
             ) : (
                 <>
-                    {data && <LineGraph data={data} />}
+                    {lineData && <LineGraph lineData={lineData} />}
                     {baseFeeData && <BarChart baseFeeData={baseFeeData} />}
                     {gasUsedPercentage !== null && (
                         <GasUsedPercent gasUsedPercentage={gasUsedPercentage} />

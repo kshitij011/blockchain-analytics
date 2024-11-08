@@ -9,6 +9,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    ChartData,
 } from "chart.js";
 
 // register the elements before using them
@@ -25,16 +26,7 @@ ChartJS.register(
 export default function GasUsedPercent({
     gasUsedPercentage,
 }: {
-    gasUsedPercentage: {
-        labels: [];
-        datasets: [
-            {
-                label: "Token Volume";
-                data: [];
-                borderColor: "rgb(75, 192, 192)";
-            }
-        ];
-    };
+    gasUsedPercentage: ChartData<"line">;
 }) {
     const options = {};
 
